@@ -4,7 +4,7 @@
 
 PROJECT_NAME = test_1
 PYTHON_VERSION = 3.12
-PYTHON_INTERPRETER = python
+PYTHON_INTERPRETER = ../.venv/bin/python
 
 #################################################################################
 # COMMANDS                                                                      #
@@ -64,7 +64,27 @@ create_environment:
 ## Make dataset
 .PHONY: data
 data: requirements
-	$(PYTHON_INTERPRETER) gogo test/dataset.py
+	$(PYTHON_INTERPRETER) gogo_test/dataset.py
+
+## Make features
+.PHONY: features
+features: requirements
+	$(PYTHON_INTERPRETER) gogo_test/features.py
+
+## Train model
+.PHONY: train
+train: requirements
+	$(PYTHON_INTERPRETER) gogo_test/modeling/train.py
+
+## Predict with model
+.PHONY: predict
+predict: requirements
+	$(PYTHON_INTERPRETER) gogo_test/modeling/predict.py
+
+## Plot data
+.PHONY: plot
+plot: requirements
+	$(PYTHON_INTERPRETER) gogo_test/plots.py
 
 
 #################################################################################
